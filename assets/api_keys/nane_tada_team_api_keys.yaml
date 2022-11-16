@@ -1,0 +1,5 @@
+api_path: 'https://nane.tada.team/'
+web_socket_path: 'wss://nane.tada.team/ws'
+api_key: ''
+api_path_sample: 'https://nane.tada.team/api/rooms'
+web_socket_path_sample: 'wss://nane.tada.team/ws?username={username}'

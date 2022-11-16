@@ -1,0 +1,211 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Nane tada team API",
+    "version": "0.0.1"
+  },
+  "servers": [
+    {
+      "url": "https://nane.tada.team/api"
+    }
+  ],
+  "paths": {
+    "/settings": {
+      "get": {
+        "tags": [
+          "settings"
+        ],
+        "summary": "Nane tada team settings",
+        "operationId": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/settingsModel"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthenticated"
+          }
+        }
+      }
+    },
+    "/rooms": {
+      "get": {
+        "tags": [
+          "rooms"
+        ],
+        "summary": "Nane tada team rooms",
+        "operationId": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/roomsModel"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthenticated"
+          }
+        }
+      }
+    },
+    "/rooms/{name}/history": {
+      "get": {
+        "tags": [
+          "history"
+        ],
+        "summary": "Nane tada team room history",
+        "operationId": "",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/historyModel"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthenticated"
+          }
+        }
+      }
+    }
+  },
+
+  "components": {
+    "schemas": {
+      "settingsModel":{
+        "type": "object",
+        "required": [
+          "result"
+        ],
+        "properties": {
+          "result": {
+            "$ref": "#/components/schemas/settingsModelResult"
+          }
+        }
+      },
+      "roomsModel":{
+        "type": "object",
+        "required": [
+          "result"
+        ],
+        "properties": {
+          "result": {
+            "$ref": "#/components/schemas/roomsModelResult"
+          }
+        }
+      },
+      "historyModel":{
+        "type": "object",
+        "required": [
+          "result"
+        ],
+        "properties": {
+          "result": {
+            "$ref": "#/components/schemas/historyModelResult"
+          }
+        }
+      },
+      "settingsModelResult":{
+        "type": "object",
+        "required": [
+          "max_message_length",
+          "max_room_title_length",
+          "max_username_length",
+          "uptime"
+        ],
+        "properties": {
+          "max_message_length": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "max_room_title_length": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "max_username_length": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "uptime": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "roomsModelResult":{
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/roomsModelResultItem"
+        }
+      },
+      "historyModelResult":{
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/messageModel"
+        }
+      },
+      "roomsModelResultItem":{
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "last_message": {
+            "$ref": "#/components/schemas/messageModel"
+          }
+        }
+      },
+      "messageModel":{
+        "type": "object",
+        "properties": {
+          "room": {
+            "type": "string"
+          },
+          "created": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "sender": {
+            "type": "object",
+            "properties": {
+              "username": {
+                "type": "string"
+              }
+            }
+          },
+          "text": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+  ]
+}
