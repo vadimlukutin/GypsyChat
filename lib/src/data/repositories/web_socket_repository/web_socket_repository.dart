@@ -1,8 +1,12 @@
 import 'package:web_socket_channel/web_socket_channel.dart';
 
+class _WebSocketRepositoryQueryKeys {
+  static const name = "name";
+}
+
 class WebSocketRepository {
-  final Map<String, WebSocketChannel> _channels = {};
   final String path;
+  final Map<String, WebSocketChannel> _channels = {};
 
   WebSocketRepository({required this.path});
 
@@ -14,9 +18,11 @@ class WebSocketRepository {
     }
 
     final url = Uri.parse(path)
-      ..replace(queryParameters: {
-        "name": name,
-      });
+      ..replace(
+        queryParameters: {
+          _WebSocketRepositoryQueryKeys.name: name,
+        },
+      );
 
     WebSocketChannel.connect(url);
   }
