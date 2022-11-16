@@ -42,3 +42,8 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+/lib/src/app/ui_components/widgets/history/item/history_item_model.freezed.dart
+/lib/src/app/ui_components/widgets/rooms/item/room_item_model.freezed.dart
+/lib/src/data/repositories/data_models/socket/message/in/socket_message_in_model.g.dart
+/lib/src/data/repositories/data_models/socket/message/out/socket_message_out_model.g.dart
+/lib/src/data/repositories/data_models/socket/message/socket_user_model.g.dart
