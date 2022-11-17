@@ -64,6 +64,7 @@ dependencies:
   logging: ^1.1.0
   json_annotation: ^4.7.0
   web_socket_channel: ^2.2.0
+  intl: ^0.17.0
 
 dev_dependencies:
   flutter_test:

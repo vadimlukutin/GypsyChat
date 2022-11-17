@@ -1,7 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:gypsy_chat/src/app/ui_components/widgets/history/item/history_item_controller.dart';
-import 'package:gypsy_chat/src/app/ui_components/widgets/rooms/item/room_item_controller.dart';
 import 'package:ui_kit/ui_kit.dart';
 
 class HistoryItemView extends StatelessWidget {
@@ -14,7 +13,7 @@ class HistoryItemView extends StatelessWidget {
     });
   }
 
-  final RoomItemController controller;
+  final HistoryItemController controller;
 
   @override
   Widget build(BuildContext context) {
