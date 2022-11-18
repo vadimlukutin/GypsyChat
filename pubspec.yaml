@@ -65,6 +65,7 @@ dependencies:
   json_annotation: ^4.7.0
   web_socket_channel: ^2.2.0
   intl: ^0.17.0
+  flutter_keyboard_size: ^1.0.1
 
 dev_dependencies:
   flutter_test:
@@ -75,7 +76,7 @@ dev_dependencies:
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^2.0.0
+  flutter_lints: ^2.0.1
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -92,6 +93,8 @@ flutter:
   assets:
     - assets/api_keys/
     - assets/swaggers/
+    - ui_kit/assets/media/icon_svg/sender.svg
+    - ui_kit/assets/media/icon_svg/sender_custom.svg
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

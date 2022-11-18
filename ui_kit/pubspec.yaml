@@ -9,9 +9,13 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-#   path: ^1.8.0
-  weather_icons: ^3.0.0
+  flutter_svg: ^1.1.6
 
 dev_dependencies:
-  lints: ^2.0.0
+  lints: ^2.0.1
   test: ^1.16.0
+
+flutter:
+  assets:
+   - assets/media/icon_svg/sender.svg
+   - assets/media/icon_svg/sender_custom.svg

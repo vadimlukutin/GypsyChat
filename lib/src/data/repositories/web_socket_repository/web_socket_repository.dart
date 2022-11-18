@@ -1,3 +1,4 @@
+import 'package:gypsy_chat/src/data/repositories/data_models/socket/message/out/socket_message_out_model.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
 class _WebSocketRepositoryQueryKeys {
@@ -24,7 +25,7 @@ class WebSocketRepository {
         },
       );
 
-    WebSocketChannel.connect(url);
+    _channels[name] = WebSocketChannel.connect(url);
   }
 
   void removeChannel({
@@ -32,6 +33,27 @@ class WebSocketRepository {
   }) {
     _channels[name]?.sink.close();
     _channels.remove(name);
+  }
+
+  void sendMessage({
+    required SocketMessageOutModel value,
+    required String channelName,
+  }) {
+    final channel = getChannel(channelName);
+
+    if (channel == null) {
+      return;
+    }
+
+    channel.sink.add(value.toJson().toString());
+  }
+
+  WebSocketChannel? getChannel(String name) {
+    if (!_channels.keys.contains(name)) {
+      return null;
+    }
+
+    return _channels[name];
   }
 
   void clearChannelList() {

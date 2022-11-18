@@ -16,6 +16,7 @@ class HistoryItemView extends GetView<HistoryItemController> {
   }
 
   @override
+  // ignore: overridden_fields
   final String tag;
 
   @override
