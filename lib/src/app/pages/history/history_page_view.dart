@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:gypsy_chat/src/app/pages/rooms/rooms_page_controller.dart';
-import 'package:gypsy_chat/src/app/ui_components/widgets/rooms/list/rooms_list_view.dart';
+import 'package:gypsy_chat/src/app/pages/history/history_page_controller.dart';
+import 'package:gypsy_chat/src/app/ui_components/widgets/history/list/history_list_view.dart';
 import 'package:ui_kit/ui_kit.dart';
 
-class RoomsPageView extends GetView<RoomsPageController> {
-  RoomsPageView({Key? key}) : super(key: key) {
-    Get.put(RoomsPageController());
+class HistoryPageView extends GetView<HistoryPageController> {
+  HistoryPageView({required String name, Key? key}) : super(key: key) {
+    Get.put(HistoryPageController(name: name));
   }
 
   @override
@@ -16,10 +16,10 @@ class RoomsPageView extends GetView<RoomsPageController> {
       child: CupertinoPageScaffold(
         resizeToAvoidBottomInset: false,
         backgroundColor: AppColors.color1,
-        navigationBar: const CupertinoNavigationBar(
+        navigationBar: CupertinoNavigationBar(
           middle: Text(
-            'Gypsy Chat',
-            style: TextStyle(
+            controller.name,
+            style: const TextStyle(
               color: AppColors.color2,
             ),
           ),
@@ -27,7 +27,7 @@ class RoomsPageView extends GetView<RoomsPageController> {
         child: SafeArea(
           child: DecoratedBox(
             decoration: const BoxDecoration(color: AppColors.color4),
-            child: RoomsListView(controller: controller.listController),
+            child: HistoryListView(controller: controller.listController),
           ),
         ),
       ),

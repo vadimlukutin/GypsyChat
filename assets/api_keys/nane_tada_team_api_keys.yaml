@@ -1,4 +1,4 @@
-api_path: 'https://nane.tada.team/'
+api_path: 'https://nane.tada.team/api'
 web_socket_path: 'wss://nane.tada.team/ws'
 api_key: ''
 api_path_sample: 'https://nane.tada.team/api/rooms'

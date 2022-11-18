@@ -6,6 +6,6 @@ class DateConverterUtil {
       return '';
     }
 
-    return DateFormat('yyyy-MM-dd – hh:mm').format(dt);
+    return DateFormat('yyyy/MM/dd HH:mm').format(dt);
   }
 }

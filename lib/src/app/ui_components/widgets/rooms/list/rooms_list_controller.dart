@@ -2,10 +2,18 @@ import 'package:get/get.dart';
 import 'package:gypsy_chat/src/app/ui_components/widgets/rooms/item/room_item_controller.dart';
 import 'package:gypsy_chat/src/app/ui_components/widgets/rooms/item/room_item_model.dart';
 
-class RoomsListController extends GetxController {
-  Rx<List<RoomItemController>> controllers = Rx(List<RoomItemController>.of([]));
+mixin RoomsListControllerDelegate {
+  void onItemTap(RoomItemModel value);
+}
 
-  RoomsListController({List<RoomItemModel>? data}) {
+class RoomsListController extends GetxController implements RoomItemControllerDelegate {
+  Rx<List<RoomItemController>> controllers = Rx(List<RoomItemController>.of([]));
+  final RoomsListControllerDelegate delegate;
+
+  RoomsListController({
+    required this.delegate,
+    List<RoomItemModel>? data,
+  }) {
     setData(models: data);
   }
 
@@ -18,9 +26,14 @@ class RoomsListController extends GetxController {
 
     controllers.value = List.generate(
       models.length,
-      (index) => RoomItemController(model: models[index]),
+      (index) => RoomItemController(delegate: this, model: models[index]),
     );
 
     refresh();
+  }
+
+  @override
+  void onItemTap(RoomItemModel value) {
+    delegate.onItemTap(value);
   }
 }

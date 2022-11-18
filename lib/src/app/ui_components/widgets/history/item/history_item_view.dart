@@ -3,22 +3,26 @@ import 'package:get/get.dart';
 import 'package:gypsy_chat/src/app/ui_components/widgets/history/item/history_item_controller.dart';
 import 'package:ui_kit/ui_kit.dart';
 
-class HistoryItemView extends StatelessWidget {
+class HistoryItemView extends GetView<HistoryItemController> {
   HistoryItemView({
-    required this.controller,
+    required HistoryItemController controller,
     Key? key,
-  }) : super(key: key) {
-    Get.create<HistoryItemController>(() {
-      return HistoryItemController();
-    });
+  })  : tag = controller.data.hashCode.toString(),
+        super(key: key) {
+    Get.put(
+      controller,
+      tag: tag,
+    );
   }
 
-  final HistoryItemController controller;
+  @override
+  final String tag;
 
   @override
   Widget build(BuildContext context) {
+    final controller = this.controller;
+
     return SizedBox(
-      height: 100,
       child: Obx(
         () {
           return HistoryItemWidget(

@@ -9,5 +9,6 @@ class RoomItemModel with _$RoomItemModel {
     String? text,
     String? username,
     String? datetime,
+    String? avatarLetter,
   }) = _RoomItemModel;
 }
