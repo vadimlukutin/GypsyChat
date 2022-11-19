@@ -23,17 +23,17 @@ class HistoryListController extends GetxController {
         (index) => HistoryItemController(model: models[index]),
       ).reversed,
     );
-
-    refresh();
   }
 
   void addItem(HistoryItemModel model) {
-    final list = controllers.toList()..insertAll(0, [HistoryItemController(model: model)]);
+    final list = controllers.toList()
+      ..insertAll(
+        0,
+        [HistoryItemController(model: model)],
+      );
 
     controllers.assignAll(
       list,
     );
-
-    refresh();
   }
 }

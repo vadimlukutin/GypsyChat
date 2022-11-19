@@ -7,7 +7,7 @@ mixin RoomsListControllerDelegate {
 }
 
 class RoomsListController extends GetxController implements RoomItemControllerDelegate {
-  Rx<List<RoomItemController>> controllers = Rx(List<RoomItemController>.of([]));
+  RxList<RoomItemController> controllers = RxList<RoomItemController>.of([]);
   final RoomsListControllerDelegate delegate;
 
   RoomsListController({
@@ -24,12 +24,15 @@ class RoomsListController extends GetxController implements RoomItemControllerDe
       return;
     }
 
-    controllers.value = List.generate(
-      models.length,
-      (index) => RoomItemController(delegate: this, model: models[index]),
+    controllers.assignAll(
+      List.generate(
+        models.length,
+        (index) => RoomItemController(
+          model: models[index],
+          delegate: this,
+        ),
+      ).reversed,
     );
-
-    refresh();
   }
 
   @override
