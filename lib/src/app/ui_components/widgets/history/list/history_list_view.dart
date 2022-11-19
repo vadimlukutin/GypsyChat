@@ -17,11 +17,11 @@ class HistoryListView extends GetView<HistoryListController> {
       () {
         return ListView.builder(
           reverse: true,
-          itemCount: controller.controllers.value.length,
+          itemCount: controller.controllers.length,
           itemBuilder: (context, index) => Padding(
             padding: const EdgeInsets.only(bottom: 5),
             child: HistoryItemView(
-              controller: controller.controllers.value[index],
+              controller: controller.controllers[index],
             ),
           ),
         );

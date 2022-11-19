@@ -18,12 +18,11 @@ class WebSocketRepository {
       return;
     }
 
-    final url = Uri.parse(path)
-      ..replace(
-        queryParameters: {
-          _WebSocketRepositoryQueryKeys.name: name,
-        },
-      );
+    final url = Uri.parse(path).replace(
+      queryParameters: {
+        _WebSocketRepositoryQueryKeys.name: name,
+      },
+    );
 
     _channels[name] = WebSocketChannel.connect(url);
   }
@@ -46,6 +45,16 @@ class WebSocketRepository {
     }
 
     channel.sink.add(value.toJson().toString());
+  }
+
+  Stream? getListener(String name) {
+    final channel = getChannel(name);
+
+    if (channel == null) {
+      return null;
+    }
+
+    return channel.stream;
   }
 
   WebSocketChannel? getChannel(String name) {

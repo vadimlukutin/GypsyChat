@@ -1,9 +1,13 @@
+import 'dart:convert';
+
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:gypsy_chat/src/app/ui_components/widgets/history/item/history_item_model.dart';
 import 'package:gypsy_chat/src/app/ui_components/widgets/history/list/history_list_controller.dart';
 import 'package:gypsy_chat/src/app/ui_components/widgets/sender/sender_bar_controller.dart';
 import 'package:gypsy_chat/src/data/extra/services/services.dart';
 import 'package:gypsy_chat/src/data/extra/utils/date_converter.dart';
+import 'package:gypsy_chat/src/data/repositories/data_models/socket/message/in/socket_message_in_model.dart';
 import 'package:gypsy_chat/src/data/repositories/data_models/socket/message/out/socket_message_out_model.dart';
 import 'package:gypsy_chat/src/data/repositories/repository/repository.dart';
 
@@ -13,6 +17,24 @@ class HistoryPageController extends GetxController implements SenderBarControlle
 
   HistoryPageController({required this.name}) {
     Get.find<WebSocketRepositoryService>().repository.addChannel(name: name);
+
+    Get.find<WebSocketRepositoryService>().repository.getListener(name)?.listen(
+      (event) {
+        if (kDebugMode) {
+          print(event);
+        }
+
+        final model = SocketMessageInModel.fromJson(jsonDecode(event));
+
+        listController.addItem(
+          HistoryItemModel(
+            text: model.text,
+            username: model.sender.username,
+            datetime: DateConverterUtil.convertDateTimeString(model.created),
+          ),
+        );
+      },
+    );
 
     senderController = SenderBarController(delegate: this);
   }
